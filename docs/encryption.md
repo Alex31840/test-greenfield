@@ -120,7 +120,7 @@ ARN it needs to attach to its own role's IAM policy.
 * `stacks/foundation_stack.py`'s `ImageBucket` sets
   `encryption=aws_s3.BucketEncryption.KMS` with `encryption_key=self.cmk`
   (referenced by CDK `Ref`/`Fn::GetAtt`, never a literal key ARN string —
-  this is asserted in `tests/unit/test_foundation_stack.py::test_bucket_encryption_references_cmk_by_ref_not_literal_arn`)
+  this is asserted in `tests/unit/test_config.py::test_bucket_encryption_references_cmk_by_ref_not_literal_arn`)
   and `bucket_key_enabled=True` (S3 Bucket Keys, to reduce the volume of
   KMS API calls/cost at the per-object sampling rate KVS image
   generation produces).

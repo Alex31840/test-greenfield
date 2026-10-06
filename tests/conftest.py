@@ -1,5 +1,5 @@
 """
-Repository-root pytest conftest.
+pytest conftest for the ``tests/`` package.
 
 The sandbox's default Python environment (``/opt/venv``, first on PATH) is
 read-only and does not have ``aws-cdk-lib``/``constructs``/``moto``
@@ -31,7 +31,9 @@ def _ensure_local_venv_on_path() -> None:
     except ImportError:
         pass
 
-    repo_root = os.path.dirname(os.path.abspath(__file__))
+    # This file lives at <repo_root>/tests/conftest.py, so the repo root
+    # (where .venv/ lives) is one directory up.
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     candidates = glob.glob(
         os.path.join(repo_root, ".venv", "lib", "python*", "site-packages")
     )
